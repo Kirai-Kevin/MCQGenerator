@@ -17,7 +17,7 @@ def generate_evaluate_chain(params):
 load_dotenv()
 
 # Load the JSON response file
-with open('C:/Users/kirai/MCQGenerator/response.json', 'r') as file:
+with open('response.json', 'r') as file:
     RESPONSE_JSON = json.load(file)
 
 # Create title
