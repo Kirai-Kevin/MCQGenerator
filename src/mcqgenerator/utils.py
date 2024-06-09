@@ -7,21 +7,22 @@ import traceback
 def read_file(file):
     if file.name.endswith(".pdf"):
         try:
-            pdf_reader = PyPDF2.PdfFileReader(file)
+            pdf_reader = PyPDF2.PdfReader(file)
             text = ""
-            for page in pdf_reader.pages:
-                text += page.extractText()
+            for page_num in range(len(pdf_reader.pages)):
+                page = pdf_reader.pages[page_num]
+                text += page.extract_text()
             return text
 
         except Exception as e:
-            raise Exception("error reading the PDF file") from e
+            raise Exception("Error reading the PDF file") from e
 
     elif file.name.endswith(".txt"):
         return file.read().decode("utf-8")
 
     else:
         raise Exception(
-            "unsupported file format, only pdf and text files are supported"
+            "Unsupported file format, only PDF and text files are supported"
         )
 
 

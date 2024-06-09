@@ -6,6 +6,12 @@ from dotenv import load_dotenv
 from src.mcqgenerator.utils import read_file, get_table_data
 from src.mcqgenerator.logger import logging
 import streamlit as st
+from openai_callbacks import get_openai_callback
+
+def generate_evaluate_chain(params):
+    # Implementation of generate_evaluate_chain
+    pass
+
 
 # Load environment variables
 load_dotenv()
@@ -50,6 +56,7 @@ with st.form("user_inputs"):
                             "response_json": json.dumps(RESPONSE_JSON)
                         }
                     )
+                    cb.update_tokens(response["total_tokens"])  # Assuming response contains total_tokens
 
             except Exception as e:
                 traceback.print_exception(type(e), e, e.__traceback__)
